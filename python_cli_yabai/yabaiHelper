@@ -4,15 +4,24 @@ import os
 import json
 
 def rename_yabai():
-    data_list = json.loads(os.popen('yabai -m query --spaces').read())
-    for item in data_list:
-        print(f"{item['index']} | {item['label']}")
+    display_yabai_displays()
     index = input("What display name to change\n")
     name = input("What's the new label?\n")
 
     stream = os.popen(f'yabai -m space {index} --label {name}')
     print('Label applied') if stream else print(stream)
 
+def display_yabai_displays() -> None:
+    """
+    Shows a list of yabai's screens to stdout
+    
+    Format:
+    <index> | <label>
+    ...
+    """
+    data_list = json.loads(os.popen('yabai -m query --spaces').read())
+    for item in data_list:
+        print(f"{item['index']} | {item['label']}") 
 
 
 if __name__ == "__main__":

@@ -1,5 +1,10 @@
 - [ ] Switch spaces in Yabai using command
 - [ ] Rename spaces in Yabai using command
+- [ ] See what windows are in each space
+
+
+
+
 
 
 # Raycast Tasks
