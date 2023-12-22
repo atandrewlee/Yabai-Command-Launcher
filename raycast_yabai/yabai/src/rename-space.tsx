@@ -49,8 +49,8 @@ export default function Command() {
     <List>
       {items.map((space) => (
         <List.Item
-          title={space.label}
-          key={space.id}
+          title={`${space.label} | ${space.index}`}
+          key={space.index}
           ></List.Item>
       ))}
     </List>
