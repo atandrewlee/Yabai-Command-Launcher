@@ -2,6 +2,7 @@
 
 import os
 import json
+import argparse
 
 def rename_yabai():
     display_yabai_displays()
@@ -23,6 +24,22 @@ def display_yabai_displays() -> None:
     for item in data_list:
         print(f"{item['index']} | {item['label']}") 
 
+def switch_yabai_displays(name: str, index: int) -> None:
+    stream = os.popen(f'yabai -m space --focus {index}')
 
 if __name__ == "__main__":
-    rename_yabai()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('command', choices=['display', 'rename', 'switch'], type=str)
+    # Display, Rename, Switch
+    #TODO: Write ArgParse Docs
+
+    args = parser.parse_args()
+
+    match args.command:
+        case 'display':
+            display_yabai_displays()
+        case 'rename':
+            rename_yabai()
+        case 'switch':
+            print('world')
+
