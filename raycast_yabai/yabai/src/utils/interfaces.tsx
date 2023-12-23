@@ -14,4 +14,8 @@ export interface Space {
     "is-native-fullscreen": boolean
 }
 
+export interface FormValue {
+    newLabel: string;
+}
+
 // TODO: Add interface for Window

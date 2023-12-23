@@ -1,7 +1,9 @@
-import { Action, ActionPanel, List } from "@raycast/api"
-import { useState, useEffect } from "react";
+// import { Action, ActionPanel, List } from "@raycast/api"
+// import { useState, useEffect } from "react";
 import { getYabaiDisplaysNotAsync } from "./utils/utils";
 import { Space } from "./utils/interfaces";
+import { ShowSpaceList } from "./components/ShowSpaceList";
+import RenameSpaceForm from "./components/RenameSpaceForm";
 
 
 // const { spawn } = require('node:child_process');
@@ -28,6 +30,12 @@ export default function Command() {
   const items = getYabaiDisplaysNotAsync();
 
   return (
+      <ShowSpaceList items={items} target={(space: Space) => <RenameSpaceForm space={space}/>}></ShowSpaceList>
+  );
+}
+
+
+
     // <List
     //   filtering={false}
     //   onSearchTextChange={setSearchText}
@@ -46,27 +54,18 @@ export default function Command() {
     //     />
     //   ))}
     // </List>
-    <List>
-      {items.map((space) => (
-        <List.Item
-          title={`${space.label} | ${space.index}`}
-          key={space.index}
-          ></List.Item>
-      ))}
-    </List>
-  );
-}
+    // <List>
+    //   {items.map((space) => (
+    //     <List.Item
+    //       title={`${space.label} | ${space.index}`}
+    //       key={space.index}
+    //       // Add Action
+    //       actions={
+    //         <ActionPanel>
 
-
-// function Command() {
-//     const { spawn } = require('node:child_process');
-//     const cmd = spawn('yabai', ['-m', 'query', '--spaces'])
-//     cmd.stdout.on('data', (data) => {
-//         // console.log(`${data}`);
-//         let dataStruct = JSON.parse(data);
-//         console.log(dataStruct);
-//         console.log(typeof dataStruct);
-//     })
-// }
-
-// Command()
+    //         </ActionPanel>
+    //       }
+    //       ></List.Item>
+    //   ))}
+    // </List>
+    // target={(space: Space) => <CreateSpaceForm space={space} showTitle={true} 
