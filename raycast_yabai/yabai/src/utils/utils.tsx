@@ -1,3 +1,4 @@
+import { closeMainWindow } from "@raycast/api";
 import { Space } from "./interfaces";
 import { exec, ExecException } from 'node:child_process'
 import { useEffect, useState } from "react";
@@ -73,6 +74,7 @@ export function renameYabaiSpaceNotAsync(newLabel: string, index: number): void 
 
 
 export async function switchYabaiSpace(index: number): Promise<string> {
+    await closeMainWindow();
     return new Promise((resolve, reject) => {
         const command = `yabai -m space --focus ${index}`;
         const options = {
@@ -96,7 +98,6 @@ export async function switchYabaiSpace(index: number): Promise<string> {
 }
 
 export function switchYabaiSpaceNotAsync(index: number): void {
-    
     switchYabaiSpace(index).then((output) => {
         console.log(output)
     }).catch((error) => {
