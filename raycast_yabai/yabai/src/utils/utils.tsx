@@ -71,4 +71,35 @@ export function renameYabaiSpaceNotAsync(newLabel: string, index: number): void 
     });
 }
 
-// console.log(renameYabaiSpaceNotAsync('ashley', 1))
+
+export async function switchYabaiSpace(index: number): Promise<string> {
+    return new Promise((resolve, reject) => {
+        const command = `yabai -m space --focus ${index}`;
+        const options = {
+            env: {USER: 'andrewlee'}
+        }
+        exec(command, options, (error: ExecException | null, stdout: string, stderr: string) => {
+            if (error) {
+                console.error(`Error executing command: ${error.message}`);
+                reject(error)
+                return;
+              }
+            
+              if (stderr) {
+                console.error(`Command had some errors: ${stderr}`);
+                reject(error);
+                return;
+              }
+            resolve(stdout);
+        })
+    })
+}
+
+export function switchYabaiSpaceNotAsync(index: number): void {
+    
+    switchYabaiSpace(index).then((output) => {
+        console.log(output)
+    }).catch((error) => {
+        console.error(error)
+    });
+}
