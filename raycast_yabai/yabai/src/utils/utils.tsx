@@ -71,4 +71,4 @@ export function renameYabaiSpaceNotAsync(newLabel: string, index: number): void 
     });
 }
 
-console.log(renameYabaiSpaceNotAsync('ashley', 1))
+// console.log(renameYabaiSpaceNotAsync('ashley', 1))
