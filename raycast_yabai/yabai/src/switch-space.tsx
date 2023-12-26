@@ -5,6 +5,8 @@ import { getYabaiDisplaysNotAsync, switchYabaiSpace } from "./utils/utils";
 export default function Command() {
     const items = getYabaiDisplaysNotAsync();
 
+    
+
     return (
         <List>
         {items.map((space) => (
