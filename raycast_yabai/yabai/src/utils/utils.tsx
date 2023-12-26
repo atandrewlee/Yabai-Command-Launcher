@@ -109,55 +109,43 @@ export function switchYabaiSpaceNotAsync(index: number): void {
     });
 }
 
-export async function queryWindow(id: number): Promise<Window> {
-  return new Promise((resolve, reject) => {
-    const command = `yabai -m query --windows --window ${id}`;
-    const options = {
-      env: { USER: "andrewlee" },
-    };
-    exec(command, options, (error: ExecException | null, stdout: string, stderr: string) => {
-      if (error) {
-        console.error(`Error executing command: ${error.message}`);
-        reject(error);
-        return;
-      }
-
-      if (stderr) {
-        console.error(`Command had some errors: ${stderr}`);
-        reject(error);
-        return;
-      }
-      const out: Window = JSON.parse(stdout);
-      resolve(out);
-    });
-  });
-}
-
-export function listWindowsInSpace(space: Space) {
-  return space.windows.map((windowId) => {
-    queryWindow(windowId)
-      .then((output) => {
-        return `${output.app} | ${output.title}`;
-      })
-      .catch((error) => {
-        console.error(error);
+export function queryWindow(id: number): string {
+  let out = ""
+  async function queryWindowHelper(id: number): Promise<Window> {
+    return new Promise((resolve, reject) => {
+      const command = `yabai -m query --windows --window ${id}`;
+      const options = {
+        env: { USER: "andrewlee" },
+      };
+      exec(command, options, (error: ExecException | null, stdout: string, stderr: string) => {
+        if (error) {
+          console.error(`Error executing command: ${error.message}`);
+          reject(error);
+          return;
+        }
+  
+        if (stderr) {
+          console.error(`Command had some errors: ${stderr}`);
+          reject(error);
+          return;
+        }
+        const out: Window = JSON.parse(stdout);
+        resolve(out);
       });
-  });
+    });
+  }
+  queryWindowHelper(id)
+    .then((output) => {
+      out = `${output.app} | ${output.title}`;
+    })
+    .catch((error) => {
+      out = `${error}`;
+    });
+    return out;
 }
 
-const exampleSpace: Space = {
-    "id":230,
-    "uuid":"C01FAC9F-4D17-485B-83F0-240B47FECA0F",
-    "index":1,
-    "label":"code",
-    "type":"bsp",
-    "display":1,
-    "windows":[33893, 68526, 136891],
-    "first-window":68526,
-    "last-window":33893,
-    "has-focus":true,
-    "is-visible":true,
-    "is-native-fullscreen":false
+export function listWindowsInSpace(space: Space): string {
+  return space.windows.map((windowId) => {
+    queryWindow(windowId);
+  }).toString();
 }
-
-// listWindowsInSpace(exampleSpace);

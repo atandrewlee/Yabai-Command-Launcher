@@ -1,5 +1,5 @@
 import { List, ActionPanel, Action } from "@raycast/api";
-import { getYabaiDisplaysNotAsync, switchYabaiSpace } from "./utils/utils";
+import { getYabaiDisplaysNotAsync, switchYabaiSpace, listWindowsInSpace } from "./utils/utils";
 
 export default function Command() {
   const items = getYabaiDisplaysNotAsync();
@@ -9,6 +9,7 @@ export default function Command() {
       {items.map((space) => (
         <List.Item
           title={`${space.label} | ${space.index}`}
+          subtitle={listWindowsInSpace(space)}
           key={space.index}
           actions={
             <ActionPanel title="Change Space">
