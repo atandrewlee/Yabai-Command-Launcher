@@ -1,4 +1,7 @@
 import { Space } from "../src/utils/interfaces";
+import { listWindowsInSpace } from "../src/utils/utils";
+
+
 
 test('Given a space, return a list of the names of the windows that are open', () => {
     // Random Query for Example
@@ -15,7 +18,6 @@ test('Given a space, return a list of the names of the windows that are open', (
         "has-focus":true,
         "is-visible":true,
         "is-native-fullscreen":false
-}
-
+    }
 
 });
