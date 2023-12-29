@@ -1,4 +1,4 @@
-# Yabai
+# Yabai Command Launcher
 
 Run commands using [Yabai](https://github.com/koekeishiya/yabai) window manager.
 
