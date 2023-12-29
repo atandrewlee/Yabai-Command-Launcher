@@ -1,4 +1,4 @@
-import { runCommandVoid } from "./utils/second_utils";
+import { runCommandVoid } from "./utils/utils";
 import { closeMainWindow, getPreferenceValues } from "@raycast/api";
 import { Preferences } from "./utils/interfaces";
 
