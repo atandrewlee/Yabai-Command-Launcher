@@ -25,5 +25,17 @@ When opening a command for the first time, it will prompt you to fill out two te
 
 
 
-
 ## Commands
+### Switch Space
+Switch to a new space
+
+### Rename Space
+Rename a space with a new label
+
+### Create Space
+Creates a new space & moves to the end
+
+
+### Delete Space
+Deletes the current space and goes to space 1
+
