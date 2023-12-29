@@ -3,7 +3,7 @@
   "name": "yabai",
   "title": "Yabai",
   "description": "Control Yabai WM",
-  "icon": "command-icon.png",
+  "icon": "yabai-icon-512px@2x.png",
   "author": "atandrewlee",
   "license": "MIT",
   "commands": [
@@ -18,6 +18,18 @@
       "title": "Switch Space",
       "description": "",
       "mode": "view"
+    },
+    {
+      "name": "delete-space",
+      "title": "Delete Space",
+      "description": "",
+      "mode": "no-view"
+    },
+    {
+      "name": "create-space",
+      "title": "Create Space",
+      "description": "",
+      "mode": "no-view"
     }
   ],
   "dependencies": {
