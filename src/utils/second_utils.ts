@@ -1,12 +1,13 @@
-import { showToast } from "@raycast/api";
+import { showToast, getPreferenceValues } from "@raycast/api";
 import { exec, ExecException } from 'node:child_process'
+import { Preferences } from "./interfaces";
 
 export async function runCommandVoid(command: string): Promise<void> {
+    const preferences = getPreferenceValues<Preferences>();
     return new Promise((resolve, reject) => {
         const options = {
-            env: {USER: 'andrewlee'}
+            env: {USER: `${preferences.userEnv}`}
         }
-        console.log(process.env)
         exec(command, options, (error: ExecException | null, stdout: string, stderr: string) => {
             if (error) {
                 console.error(`Error executing command: ${error.message}`);

@@ -18,4 +18,10 @@ export interface FormValue {
     newLabel: string;
 }
 
+
+export interface Preferences {
+    jqLocation: string;
+    userEnv: string;
+}
+
 // TODO: Add interface for Window

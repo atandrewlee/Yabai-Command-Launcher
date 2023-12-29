@@ -6,6 +6,22 @@
   "icon": "yabai-icon-512px@2x.png",
   "author": "atandrewlee",
   "license": "MIT",
+  "preferences": [
+    {
+      "title": "Location of jq CLI JSON processor",
+      "name": "jqLocation",
+      "description": "",
+      "type": "textfield",
+      "required": true
+    },
+    {
+      "title": "USER env variable",
+      "name":"userEnv",
+      "description": "",
+      "type": "textfield",
+      "required": true
+    }
+  ],
   "commands": [
     {
       "name": "rename-space",
